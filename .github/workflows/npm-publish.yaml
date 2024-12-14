@@ -1,5 +1,8 @@
 on:
   workflow_call:
+    inputs:
+      NODE_VERSION:
+        type: string
     secrets:
       NPM_ACCESS_TOKEN:
         required: true
@@ -13,7 +16,7 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: ${{ inputs.node_version || '22' }}
           registry-url: https://registry.npmjs.org/
       
       - run: npm publish
