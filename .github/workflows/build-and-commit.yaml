@@ -2,7 +2,6 @@ on:
   workflow_call:
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64:
-        required: true
 
 jobs:
   build-and-commit:
