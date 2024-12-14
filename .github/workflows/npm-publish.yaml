@@ -3,6 +3,7 @@ on:
     inputs:
       NODE_VERSION:
         type: string
+        required: false
     secrets:
       NPM_ACCESS_TOKEN:
         required: true
