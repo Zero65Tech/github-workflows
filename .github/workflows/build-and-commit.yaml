@@ -1,5 +1,3 @@
-name: Build and Commit
-
 on:
   workflow_call:
     secrets:
