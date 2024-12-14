@@ -1,5 +1,9 @@
 on:
   workflow_call:
+    inputs:
+      NODE_VERSION:
+        type: string
+        required: true
     secrets:
       GOOGLE_APPLICATION_CREDENTIALS_BASE64:
         required: false
@@ -15,7 +19,7 @@ jobs:
       
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: ${{ inputs.node_version }}
       
       - name: Google Artifacts Registry Access
         run: | 
