@@ -5,7 +5,7 @@ on:
         required: false
 
 jobs:
-  build-and-commit:
+  build-test-commit:
     runs-on: ubuntu-latest
     steps:
 
