@@ -10,9 +10,6 @@ jobs:
     steps:
 
       - uses: actions/checkout@v3
-        with:
-          ref: ${{ github.head_ref }}
-      
       - uses: actions/setup-node@v3
         with:
           node-version: 16
@@ -29,13 +26,3 @@ jobs:
           
       - run: npm ci
       - run: npm run build
-      
-      - name: Commit and Push
-        run: |
-          if [ -n "$(git status --porcelain)" ]; then
-            git config user.name "Zero65 Bot"
-            git config user.email "google-cloud-build@zero65.in"
-            git add .
-            git commit -m "npm run build"
-            git push
-          fi
