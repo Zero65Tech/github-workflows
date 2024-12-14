@@ -9,17 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      - name: Checkout Repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           ref: ${{ github.head_ref }}
       
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
       
-      - name: Set up Google Artifacts Registry Access
+      - name: Google Artifacts Registry Access
         run: | 
           if [ -n "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" ]; then
             echo "@zero65:registry=https://asia-south1-npm.pkg.dev/zero65/npm/" > ~/.npmrc
@@ -29,13 +27,10 @@ jobs:
             npx google-artifactregistry-auth
           fi
           
-      - name: npm ci
-        run: npm ci
+      - run: npm ci
+      - run: npm run build
       
-      - name: npm run build
-        run: npm run build
-      
-      - name: Commit and Push Changes
+      - name: Commit and Push
         run: |
           if [ -n "$(git status --porcelain)" ]; then
             git config user.name "Zero65 Bot"
