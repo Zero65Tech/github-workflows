@@ -9,7 +9,7 @@ on:
         required: false
 
 jobs:
-  build-test-commit:
+  list-and-commit:
     runs-on: ubuntu-latest
     steps:
 
