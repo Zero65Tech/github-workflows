@@ -9,7 +9,7 @@ on:
         required: false
 
 jobs:
-  lint:
+  npm-run-lint:
     runs-on: ubuntu-latest
     steps:
 
