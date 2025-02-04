@@ -9,7 +9,7 @@ on:
         required: false
 
 jobs:
-  list-and-commit:
+  lint:
     runs-on: ubuntu-latest
     steps:
 
