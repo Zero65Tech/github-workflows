@@ -16,15 +16,10 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Authenticate to Google Cloud
-        uses: google-github-actions/auth@v2
-        with:
-          credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
-
       - name: Google Artifacts Registry Access
         run: | 
           if [ -n "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" ]; then
             mkdir -p ~/.config/gcloud
             echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.config/gcloud/application_default_credentials.json
-            gcloud builds submit "https://github.com/Zero65Tech/zerodha" --project=zero65-test --git-source-revision=main --config=cloudbuild.yaml
+            gcloud builds submit --project=zero65-test --git-source-revision=master --config=cloudbuild.yaml
           fi
