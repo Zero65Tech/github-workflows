@@ -26,5 +26,5 @@ jobs:
           if [ -n "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" ]; then
             mkdir -p ~/.config/gcloud
             echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.config/gcloud/application_default_credentials.json
-            gcloud builds submit "https://github.com/Zero65Tech/zerodha" --git-source-revision=main --config=cloudbuild.yaml
+            gcloud builds submit "https://github.com/Zero65Tech/zerodha" --project=zero65-test --git-source-revision=main --config=cloudbuild.yaml
           fi
