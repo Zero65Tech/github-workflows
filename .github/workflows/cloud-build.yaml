@@ -30,16 +30,4 @@ jobs:
 
       - name: Run Google Cloud Build with Inline Config
         run: |
-          gcloud builds submit --no-source --config - <<EOF
-          steps:
-          - name: gcr.io/cloud-builders/npm
-            args: ["install"]
-          - name: gcr.io/cloud-builders/docker
-            args: ["build", "-t", "gcr.io/zero65-test/my-app", "."]
-          - name: gcr.io/cloud-builders/docker
-            args: ["push", "gcr.io/zero65-test/my-app"]
-          - name: gcr.io/google.com/cloudsdktool/cloud-sdk
-            entrypoint: gcloud
-            args: ["run", "deploy", "my-app", "--image", "gcr.io/zero65-test/my-app", "--platform", "managed", "--region", "us-central1"]
-          timeout: 900s
-          EOF
+          gcloud builds submit "https://github.com/Zero65Tech/zerodha" --git-source-revision=main --config=cloudbuild.yaml
