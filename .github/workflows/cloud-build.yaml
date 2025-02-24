@@ -22,9 +22,4 @@ jobs:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
 
       - name: Google Artifacts Registry Access
-        run: | 
-          if [ -n "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" ]; then
-            mkdir -p ~/.config/gcloud
-            echo "${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}" | base64 --decode > ~/.config/gcloud/application_default_credentials.json
-            gcloud builds submit --project=zero65-test --git-source-revision=master --config=cloudbuild.yaml
-          fi
+        run: gcloud builds submit --project=zero65-test --git-source-revision=master --config=cloudbuild.yaml
