@@ -13,13 +13,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v4
-
-      - name: Authenticate to Google Cloud
+  
+      - name: Authenticate with Google Cloud
         uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS_BASE64 }}
-
-      - name: Google Artifacts Registry Access
-        run: gcloud builds submit --project=zero65-test --git-source-revision=master --config=cloudbuild.yaml
+  
+      - name: Trigger Google Cloud Build
+        uses: google-github-actions/cloud-build@v0
+        with:
+          project_id: "zero65-test"
+          config: "cloudbuild.yaml"
