@@ -30,7 +30,7 @@ jobs:
 
       - name: Run Google Cloud Build with Inline Config
         run: |
-          gcloud builds submit --config - --project YOUR_PROJECT_ID <<EOF
+          gcloud builds submit --config - --project zero65-test <<EOF
           steps:
           - name: gcr.io/cloud-builders/npm
             args: ["install"]
